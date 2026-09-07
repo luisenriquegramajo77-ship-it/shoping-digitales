@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SHOPING DIGITALES - Recargas, gaming, gift cards y productos digitales.">
+  <title>SHOPING DIGITALES</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #090b10;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 11, 16, 0.95);
+      border-bottom: 1px solid #222631;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: #00e5ff;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      background: #151923;
+      border: 1px solid #292f3d;
+      color: white;
+      padding: 10px 13px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 20px 35px;
+    }
+
+    .hero-box {
+      background:
+        radial-gradient(circle at top right, rgba(0,229,255,.20), transparent 35%),
+        linear-gradient(135deg, #121722, #0c0f16);
+      border: 1px solid #252b38;
+      border-radius: 24px;
+      padding: 42px 25px;
+      overflow: hidden;
+    }
+
+    .badge {
+      display: inline-block;
+      color: #00e5ff;
+      background: rgba(0,229,255,.10);
+      border: 1px solid rgba(0,229,255,.25);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 8vw, 70px);
+      line-height: .98;
+      max-width: 850px;
+    }
+
+    h1 span {
+      color: #00e5ff;
+    }
+
+    .hero p {
+      color: #aab2c0;
+      max-width: 650px;
+      line-height: 1.6;
+      margin-top: 20px;
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 27px;
+    }
+
+    .btn {
+      border-radius: 13px;
+      padding: 14px 20px;
+      font-weight: 800;
+      border: 0;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: #00e5ff;
+      color: #001015;
+    }
+
+    .btn-secondary {
+      background: #181d27;
+      color: white;
+      border: 1px solid #303746;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+      font-size: 27px;
+    }
+
+    .section-title p {
+      color: #8992a1;
+      font-size: 14px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 15px 17px;
+      border-radius: 14px;
+      border: 1px solid #292f3d;
+      background: #11151d;
+      color: white;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+
+    .category {
+      flex: 0 0 auto;
+      padding: 11px 15px;
+      border: 1px solid #292f3d;
+      background: #12161f;
+      border-radius: 999px;
+      color: #dfe5ed;
+      font-size: 14px;
+    }
+
+    .category.active {
+      background: #00e5ff;
+      color: #001015;
+      border-color: #00e5ff;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+    }
+
+    .card {
+      background: #11151d;
+      border: 1px solid #252b38;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #00e5ff;
+    }
+
+    .product-image {
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+      background:
+        radial-gradient(circle, rgba(0,229,255,.16), transparent 55%),
+        #0e1219;
+    }
+
+    .card-content {
+      padding: 17px;
+    }
+
+    .card small {
+      color: #00e5ff;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      color: #8f98a8;
+      font-size: 14px;
+      min-height: 38px;
+      line-height: 1.4;
+    }
+
+    .card .price {
+      margin-top: 14px;
+      font-weight: 900;
+      font-size: 17px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .feature {
+      background: #11151d;
+      border: 1px solid #252b38;
+      padding: 22px;
+      border-radius: 18px;
+    }
+
+    .feature-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #8f98a8;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid #222631;
+      margin-top: 40px;
+    }
+
+    .footer {
+      max-width: 1200px;
+      margin: auto;
+      padding: 35px 20px;
+      color: #8992a1;
+      font-size: 14px;
+    }
+
+    .footer strong {
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 850px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero {
+        padding-top: 30px;
+      }
+
+      .hero-box {
+        padding: 30px 20px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .product-image {
+        min-height: 110px;
+        font-size: 42px;
+      }
+
+      .card-content {
+        padding: 13px;
+      }
+
+      .card h3 {
+        font-size: 15px;
+      }
+
+      .card p {
+        font-size: 12px;
+      }
+
+      .nav {
+        padding: 13px 15px;
+      }
+
+      .logo {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">SHOPING <span>DIGITALES</span></div>
+
+    <div class="nav-actions">
+      <button class="icon-btn">🔍</button>
+      <button class="icon-btn">🛒</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="hero">
+    <div class="hero-box">
+
+      <div class="badge">🎮 Productos digitales</div>
+
+      <h1>
+        Tu mundo digital,
+        <span>en un solo lugar.</span>
+      </h1>
+
+      <p>
+        Recargas, diamantes, membresías, gift cards, juegos
+        y productos digitales de entretenimiento.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#productos" class="btn btn-primary">
+          Ver productos
+        </a>
+
+        <a href="#categorias" class="btn btn-secondary">
+          Explorar categorías
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <section id="categorias">
+
+    <div class="section-title">
+      <h2>Categorías</h2>
+    </div>
+
+    <div class="categories">
+      <div class="category active">Todos</div>
+      <div class="category">Free Fire</div>
+      <div class="category">Roblox</div>
+      <div class="category">Mobile Legends</div>
+      <div class="category">PUBG</div>
+      <div class="category">Gift Cards</div>
+      <div class="category">PlayStation</div>
+      <div class="category">Xbox</div>
+      <div class="category">Nintendo</div>
+    </div>
+
+  </section>
+
+  <section id="productos">
+
+    <div class="section-title">
+      <div>
+        <h2>Productos</h2>
+        <p>Elegí el producto digital que necesitás.</p>
+      </div>
+    </div>
+
+    <input
+      class="search"
+      type="search"
+      placeholder="Buscar juegos, recargas o gift cards..."
+    >
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="product-image">🔥</div>
+        <div class="card-content">
+          <small>RECARGA</small>
+          <h3>Free Fire</h3>
+          <p>Diamantes y paquetes para tu cuenta.</p>
+          <div class="price">Ver paquetes</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="product-image">💎</div>
+        <div class="card-content">
+          <small>GAMING</small>
+          <h3>Mobile Legends</h3>
+          <p>Diamantes y pases digitales.</p>
+          <div class="price">Ver paquetes</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="product-image">🎮</div>
+        <div class="card-content">
+          <small>GAMING</small>
+          <h3>Roblox</h3>
+          <p>Productos digitales para Roblox.</p>
+          <div class="price">Ver opciones</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="product-image">🎁</div>
+        <div class="card-content">
+          <small>GIFT CARDS</small>
+          <h3>Gift Cards</h3>
+          <p>Steam, PlayStation, Xbox y más.</p>
+          <div class="price">Ver tarjetas</div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="section-title">
+      <h2>¿Cómo funciona?</h2>
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        <div class="feature-icon">🛒</div>
+        <h3>1. Elegí tu producto</h3>
+        <p>
+          Seleccioná el juego, recarga, paquete o producto digital que necesitás.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">💳</div>
+        <h3>2. Realizá el pago</h3>
+        <p>
+          El sistema permitirá utilizar medios de pago disponibles para Argentina.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>3. Procesamos tu pedido</h3>
+        <p>
+          Los productos compatibles podrán automatizarse mediante integración con proveedores.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer">
+
+    <strong>SHOPING DIGITALES</strong>
+
+    <p style="margin-top:10px;">
+      Tienda de productos digitales y entretenimiento.
+    </p>
+
+    <div class="footer-links">
+      <span>Términos y condiciones</span>
+      <span>Privacidad</span>
+      <span>Política de reembolsos</span>
+      <span>Contacto</span>
+    </div>
+
+    <p style="margin-top:22px;">
+      © 2026 SHOPING DIGITALES. Todos los derechos reservados.
+    </p>
+
+  </div>
+</footer>
+
+</body>
+</html>
